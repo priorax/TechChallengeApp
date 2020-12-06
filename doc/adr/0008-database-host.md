@@ -34,4 +34,8 @@ Using Aurora Serverless could potentially end up being more cost effective, howe
 
 ## Consequences
 
+<<<<<<< HEAD
 Higher cost of running compared to EC2, but lower operational costs.
+=======
+Higher cost of running compared to EC2, but lower operational costs.
+>>>>>>> dc56484 (Chose RDS as a database host)
