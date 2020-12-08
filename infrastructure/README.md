@@ -33,16 +33,20 @@
 
 ## Install dependencies using npm
 
+_Note: this is to be run from the root directory of the project_
+
 ```shell
 npm ci
 ```
 
 ## Deploy Production Stack
+_Note: this is to be run from the root directory of the project_
 ```shell
 npm run deploy:prod
 ```
 
 ## Deploy Test Stack
+_Note: this is to be run from the root directory of the project_
 ```shell
 npm run deploy:test
 ```
