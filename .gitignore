@@ -22,3 +22,6 @@ dist/
 
 # Output Binary
 TechChallengeApp
+
+# Dependencies
+node_modules/
