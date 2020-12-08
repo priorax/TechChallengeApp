@@ -6,7 +6,7 @@
   },
   "scripts": {
     "build": "cdk synth",
-    "deploy": "npm run deploy",
+    "deploy": "npm run deploy:test",
     "deploy:test": "cdk deploy TaskApiStack-Test --require-approval never",
     "deploy:prod": "cdk deploy TaskApiStack-Prod --require-approval never"
   },

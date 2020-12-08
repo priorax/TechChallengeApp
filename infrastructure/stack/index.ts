@@ -4,7 +4,7 @@ import {StackDatabase} from './database'
 import {StackLoadBalancer} from './loadbalancer'
 import { StackContainer } from './containers';
 import { Port, Protocol } from '@aws-cdk/aws-ec2';
-import { ApplicationProtocol, ListenerCondition } from '@aws-cdk/aws-elasticloadbalancingv2';
+import { ApplicationProtocol, ListenerCondition, loadBalancerNameFromListenerArn } from '@aws-cdk/aws-elasticloadbalancingv2';
 interface StackProps extends cdk.StackProps {
     isDebug: boolean
 }
@@ -20,7 +20,7 @@ export class TaskApiStack extends cdk.Stack {
         vpc,
         databaseName
     })
-    const {listener} = new StackLoadBalancer(this, 'loadBalancer',
+    const {listener, alb} = new StackLoadBalancer(this, 'loadBalancer',
     {
       ...prop,
       vpc
@@ -59,6 +59,9 @@ export class TaskApiStack extends cdk.Stack {
     }).scaleOnRequestCount('requestScaling', {
       requestsPerTarget: 500,
       targetGroup
+    })
+    new cdk.CfnOutput(this, 'LoadBalancer', {
+      value: `http://${alb.loadBalancerDnsName}`
     })
   }
 }
