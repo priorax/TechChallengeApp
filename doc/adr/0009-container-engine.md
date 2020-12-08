@@ -1,6 +1,6 @@
-# 7. database provider choide
+# 9. container orchestration choice
 
-Date: 2020-06-12
+Date: 2020-12-06
 
 ## Status
 
@@ -8,30 +8,24 @@ Proposed
 
 ## Context
 
-As the database has not been deployed yet, there needs to be a decision on where it should run.
+Maintaining a large fleet of containers can become awkward to manage, thus some tool should be picked to allow for placement and management of containers.
 
 Options include:
 
- - Self-managed database running on an EC2
+ - Self managed Kubernetes (k8s) on EC2
 
- - Amazon Relational Database Service (RDS)
+ - Amazon's managed Kubernetes service (EKS)
 
- - Using Amazon Aurora (Postgres Compatiable)
-
- - Using Amazon Aurora Serverless (Postgres Compatiable)
- 
- - Running Postgres as a side car container and syncing the data between containers using a shared file system.
+ - Amazon's proprietary container engine (ECS)
 
 ## Decision
 
-Use of RDS.
+Use of ECS.
 
-This will provide minimal operational overhead moving forwards as well as providing high availability with minimal downtime in case of an avaliability zone failure.
+While EKS could provide a better developer experience in that they can locally simulate k8s, the tight, out of the box integration with a variety of AWS services allows for rapid development of the infrastructure.
 
-The tight integration with both IAM and Amazon Secrets Manager also allows for easy password creation and rotation without human intervention.
-
-Using Aurora Serverless could potentially end up being more cost effective, however due to the unknown scale of this application, the performance hit while scaling is unknown. Aurora Serverless v2 may remedy this and should be considered as a future transition path.
+It also allows for use of Fargate, thus allowing for more granular scaling.
 
 ## Consequences
 
-Higher cost of running compared to EC2, but lower operational costs.
+Prevents the solution from being able to be run in a production-like environment locally.

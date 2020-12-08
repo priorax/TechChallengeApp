@@ -4,4 +4,9 @@ import * as cdk from '@aws-cdk/core';
 import { TaskApiStack } from './stack';
 
 const app = new cdk.App();
-const stack = new TaskApiStack(app, 'TaskApiStack');
+new TaskApiStack(app, 'TaskApiStack-Test', {
+    isDebug: true
+});
+new TaskApiStack(app, 'TaskApiStack-Prod', {
+    isDebug: false
+})
